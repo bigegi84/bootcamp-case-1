@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enrollmentservice-dpl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enrollmentservice
+  template:
+    metadata:
+      labels:
+        app: enrollmentservice
+    spec:
+      containers:
+      - name: enrollmentservice
+        image: bigegi84/enrollmentservice:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: enrollment-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: enrollmentservice
+  ports:
+  - name: enrollmentservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
