@@ -14,7 +14,7 @@ namespace PaymentService.Controllers
 
   [ApiController]
   [Route("api/p/[controller]")]
-  [Authorize(Roles = "admin")]
+  [Authorize(Roles = "admin, student")]
   public class PaymentController : ControllerBase
   {
 
