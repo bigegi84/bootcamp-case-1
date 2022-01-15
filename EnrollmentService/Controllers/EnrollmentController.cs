@@ -72,7 +72,6 @@ namespace EnrollmentService.Controllers
         {
           HttpClientHandler clientHandler = new HttpClientHandler();
           clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-
           using (var client = new HttpClient(clientHandler))
           {
             string token = Request.Headers["Authorization"];
